@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Problema3 : Interactable
 {
-    public static int[] arreglo = new int[] {-2,1,-3,4,-3,1};
+    public static int[] arreglo = new int[] {-2,1,-3,4,-1,2,1,-5,4};
     public static List<int> nums = new List<int>();
-     private static int max_so_far = 0, max_ending_here = 0, inicio = 0, fin = 0, s = 0;
+     private static int max_actual = 0, max_final = 0, inicio = 0, fin = 0, s = 0;
     void Start()
     {
 
@@ -17,16 +17,16 @@ public class Problema3 : Interactable
         base.Interact();
         for (int i = 0; i < arreglo.Length; i++)
         {
-            max_ending_here += arreglo[i];
-            if (max_so_far < max_ending_here)
+            max_final += arreglo[i];
+            if (max_actual < max_final)
             {
-                max_so_far = max_ending_here;
+                max_actual = max_final;
                 inicio = s;
                 fin = i;
             }
-            if (max_ending_here < 0)
+            if (max_final < 0)
             {
-                max_ending_here = 0;
+                max_final = 0;
                 s = i + 1;
             }
         }
@@ -34,7 +34,7 @@ public class Problema3 : Interactable
             {
                 nums.Add(arreglo[i]);
             }
-            Debug.Log("suma es " + max_so_far);
+            Debug.Log("suma es " + max_actual);
             Debug.Log("Numeros: ");
             foreach(int numero in nums)
             {
